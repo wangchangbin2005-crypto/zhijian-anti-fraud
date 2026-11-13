@@ -1,0 +1,38 @@
+.prog {
+  margin-top: 16rpx;
+  font-size: 24rpx;
+  color: #6b82a8;
+}
+
+.mt {
+  margin-top: 16rpx;
+}
+
+.pick {
+  display: inline-block;
+  margin: 16rpx 0;
+  padding: 12rpx 24rpx;
+  background: #192840;
+  border-radius: 10rpx;
+  border: 1px solid var(--border);
+  font-size: 24rpx;
+}
+
+.di {
+  font-size: 22rpx;
+  padding: 12rpx 0;
+  border-bottom: 1px solid var(--border);
+  color: #e2eaf8;
+  line-height: 1.5;
+}
+
+.di.wrong {
+  background: rgba(239, 68, 68, 0.06);
+}
+
+.empty {
+  text-align: center;
+  color: #6b82a8;
+  padding: 60rpx;
+  font-size: 26rpx;
+}

@@ -1,0 +1,6 @@
+<view class="aria-wrap" bindtap="onTap">
+  <view class="aria-bubble" wx:if="{{bubble}}">{{bubble}}</view>
+  <view class="aria-figure {{moodClass}}">🤖</view>
+  <text class="aria-label">ARIA · 反诈助手</text>
+  <text class="aria-status">{{statusText}}</text>
+</view>

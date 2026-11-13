@@ -1,0 +1,98 @@
+<view class="login-page">
+
+  <!-- 背景装饰 -->
+  <view class="bg-circle1"></view>
+  <view class="bg-circle2"></view>
+  <view class="bg-circle3"></view>
+
+  <!-- 顶部logo区 -->
+  <view class="top-section">
+    <view class="shield-wrap">
+      <view class="shield">盾</view>
+      <view class="shield-ring"></view>
+    </view>
+    <text class="app-title">反诈智能体</text>
+    <text class="app-slogan">AI守护 · 识别诈骗 · 保护家人</text>
+  </view>
+
+  <!-- 登录卡片 -->
+  <view class="login-card">
+    <view class="auth-tabs">
+      <view class="auth-tab {{authMode==='login'?'active':''}}" bindtap="setMode" data-mode="login">登录</view>
+      <view class="auth-tab {{authMode==='register'?'active':''}}" bindtap="setMode" data-mode="register">注册</view>
+    </view>
+
+    <block wx:if="{{authMode==='login'}}">
+      <view class="sub-tabs">
+        <view class="sub-tab {{loginSubMode==='pwd'?'active':''}}" bindtap="setSub" data-sub="pwd">密码登录</view>
+        <view class="sub-tab {{loginSubMode==='sms'?'active':''}}" bindtap="setSub" data-sub="sms">邮箱验证码</view>
+      </view>
+
+      <block wx:if="{{loginSubMode==='pwd'}}">
+        <view class="field">
+          <text class="field-icon">👤</text>
+          <input class="field-input" value="{{loginForm.username}}" bindinput="onLoginField" data-form="login" data-key="username" placeholder="请输入账号" placeholder-class="ph" />
+        </view>
+        <view class="field">
+          <text class="field-icon">🔒</text>
+          <input class="field-input" password value="{{loginForm.password}}" bindinput="onLoginField" data-form="login" data-key="password" placeholder="请输入密码" placeholder-class="ph" />
+        </view>
+      </block>
+
+      <block wx:if="{{loginSubMode==='sms'}}">
+        <view class="field">
+          <text class="field-icon">📧</text>
+          <input class="field-input" value="{{smsForm.email}}" bindinput="onLoginField" data-form="sms" data-key="email" placeholder="邮箱地址" placeholder-class="ph" />
+        </view>
+        <view class="field">
+          <text class="field-icon">🔑</text>
+          <input class="field-input" value="{{smsForm.code}}" bindinput="onLoginField" data-form="sms" data-key="code" placeholder="6位验证码" maxlength="6" placeholder-class="ph" />
+          <button class="sms-btn" disabled="{{smsCooldown>0}}" bindtap="sendSms">{{smsCooldown>0 ? smsCooldown+'s' : '发送'}}</button>
+        </view>
+        <text class="dev-code" wx:if="{{devCode}}">开发验证码：{{devCode}}</text>
+      </block>
+
+      <view class="error-tip" wx:if="{{loginError}}">⚠️ {{loginError}}</view>
+      <button class="login-btn" loading="{{loginLoading}}" bindtap="doLogin">登录</button>
+      <text class="hint-text">演示账号 demo / 123456</text>
+    </block>
+
+    <block wx:if="{{authMode==='register'}}">
+      <view class="field">
+        <text class="field-icon">👤</text>
+        <input class="field-input" value="{{regForm.username}}" bindinput="onRegField" data-key="username" placeholder="账号（4-16位）" placeholder-class="ph" />
+      </view>
+      <view class="field">
+        <text class="field-icon">🔒</text>
+        <input class="field-input" password value="{{regForm.password}}" bindinput="onRegField" data-key="password" placeholder="密码（6位以上）" placeholder-class="ph" />
+      </view>
+      <view class="field">
+        <text class="field-icon">🔒</text>
+        <input class="field-input" password value="{{regForm.confirm}}" bindinput="onRegField" data-key="confirm" placeholder="确认密码" placeholder-class="ph" />
+      </view>
+      <view class="field">
+        <text class="field-icon">🏷</text>
+        <picker mode="selector" range="{{roleLabels}}" value="{{regRoleIndex}}" bindchange="onRegRole" style="flex:1">
+          <view class="field-input picker-val">{{roleLabels[regRoleIndex]}}</view>
+        </picker>
+      </view>
+      <block wx:if="{{regForm.role==='client'}}">
+        <view class="field-row">
+          <view class="field half">
+            <input class="field-input" type="number" value="{{regForm.age}}" bindinput="onRegField" data-key="age" placeholder="年龄" placeholder-class="ph" />
+          </view>
+          <view class="field half">
+            <picker mode="selector" range="{{idLabels}}" value="{{idIndex}}" bindchange="onIdPick" style="flex:1">
+              <view class="field-input picker-val">{{idLabels[idIndex]}}</view>
+            </picker>
+          </view>
+        </view>
+      </block>
+      <view class="error-tip" wx:if="{{loginError}}">⚠️ {{loginError}}</view>
+      <button class="login-btn" loading="{{loginLoading}}" bindtap="doRegister">立即注册</button>
+    </block>
+
+    <view class="intro-link" bindtap="goIntro">了解诈骗套路 →</view>
+  </view>
+
+</view>

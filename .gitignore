@@ -1,0 +1,29 @@
+# Secrets and local settings
+.env
+.env.*
+!.env.example
+project.private.config.json
+# Environments and build artifacts
+.venv/
+venv/
+venv64/
+node_modules/
+__pycache__/
+*.py[cod]
+*.tsbuildinfo
+dist/
+.idea/
+.vscode/
+# Runtime/user data
+*.db
+*.db-*
+*.sqlite*
+chroma_db/
+chroma/
+uploads/
+outputs/
+reports/
+logs/
+*.log
+*.bak
+.DS_Store

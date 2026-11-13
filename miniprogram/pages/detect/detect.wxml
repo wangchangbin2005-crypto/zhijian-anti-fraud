@@ -1,0 +1,149 @@
+<view class="af-page page-detect">
+  <view class="af-page-header-title">实时诈骗检测</view>
+  <view class="af-page-header-sub">多模态智能分析 · 实时风险评估 · 自动监护人联动</view>
+
+  <view class="af-stat-grid">
+    <view class="af-stat"><text class="af-stat-value" style="color:#4a6cf7">{{stats.total}}</text><text class="af-stat-label">累计检测</text></view>
+    <view class="af-stat"><text class="af-stat-value" style="color:#ef4444">{{stats.flagged}}</text><text class="af-stat-label">风险拦截</text></view>
+    <view class="af-stat"><text class="af-stat-value" style="color:#22c55e">{{stats.safe}}</text><text class="af-stat-label">安全通过</text></view>
+    <view class="af-stat"><text class="af-stat-value" style="color:#f59e0b">{{stats.guardian}}</text><text class="af-stat-label">监护人通知</text></view>
+  </view>
+
+  <view class="af-card chat-card">
+    <scroll-view scroll-y class="chat-scroll" scroll-into-view="{{scrollInto}}" scroll-with-animation>
+      <view wx:if="{{!chatMessages.length}}" class="empty-chat">
+        <text class="big">💬</text>
+        <text>把可疑内容发给我，AI 实时分析风险等级</text>
+        <view class="quick-row">
+          <text class="quick-btn quick-critical" bindtap="quick" data-t="我是公安局，你账号涉案，立刻把钱转到指定安全账户配合调查，否则逮捕">极高风险</text>
+          <text class="quick-btn quick-high" bindtap="quick" data-t="我是你朋友小李，最近做生意资金周转不开，能先借我五千吗，月底一定还">高风险</text>
+          <text class="quick-btn quick-medium" bindtap="quick" data-t="您好，您的银行卡存在异常消费，请回复1确认是否本人操作">中风险</text>
+          <text class="quick-btn quick-safe" bindtap="quick" data-t="你好，我是隔壁王阿姨，明天社区有免费体检活动，记得带身份证来">安全</text>
+        </view>
+      </view>
+
+      <block wx:for="{{chatMessages}}" wx:key="mid" wx:for-index="idx">
+        <view id="m{{idx}}" class="msg-anchor"></view>
+        <view wx:if="{{item.role==='user'}}" class="row-user">
+          <view class="bubble-user">
+            <video wx:if="{{item.imageUrl && item.mediaIsVideo}}" class="img msg-video" src="{{item.imageUrl}}" controls />
+            <image wx:elif="{{item.imageUrl}}" class="img" src="{{item.imageUrl}}" mode="widthFix" />
+            <text>{{item.text}}</text>
+            <text class="tm">{{item.time}}</text>
+          </view>
+        </view>
+        <view wx:if="{{item.role==='system'}}" class="row-sys">
+          <view class="bubble-sys">
+            <view class="sys-head">
+              <text class="risk-tag" style="background:{{item.riskColor}}">{{item.riskLabel}}</text>
+              <text class="ftype">{{item.result.decision.fraud_type}}</text>
+              <text class="tm">{{item.time}}</text>
+            </view>
+            <text class="exp">{{item.result.decision.explanation}}</text>
+            <view class="ev" wx:if="{{item.result.decision.evidence.length}}">
+              <text wx:for="{{item.result.decision.evidence}}" wx:key="*this" class="ev-tag">{{item}}</text>
+            </view>
+            <text class="meta">原始分 {{item.result.decision.raw_score}} · 置信度 {{util.roundPct(item.result.decision.confidence)}}%</text>
+            <view wx:if="{{item.result.decision.risk_level!=='safe' && item.result.decision.risk_level!=='low'}}" class="tip-box">
+              <text class="tip-t">💡 {{identityLabel}}的建议</text>
+              <text class="tip-c">{{item.result.decision.risk_level==='critical' || item.result.decision.risk_level==='high' ? '请立即停止转账与透露验证码，拨打96110或联系家人。' : '请谨慎核实对方身份后再操作。'}}</text>
+            </view>
+            <view class="algo-grid">
+              <view class="algo"><text class="an">⚡ TF-IDF</text><text class="av">可疑分 {{item.result.algorithms.tfidf.score}}</text></view>
+              <view class="algo"><text class="an">🏷 NER</text><text class="av">金额 {{item.result.algorithms.ner.has_money?'有':'无'}} · 紧迫 {{item.result.algorithms.ner.urgency?'是':'否'}}</text></view>
+              <view class="algo"><text class="an">💭 情感</text><text class="av">操控 {{item.result.algorithms.sentiment.manipulation_score}}/100</text></view>
+              <view class="algo"><text class="an">🌲 IF</text><text class="av">{{item.result.algorithms.iforest.is_anomaly?'异常':'正常'}}</text></view>
+            </view>
+            <view class="act-row">
+              <text class="link-btn" wx:if="{{item.result.intervention.record_id}}" bindtap="viewReport" data-id="{{item.result.intervention.record_id}}">📄 查看报告</text>
+              <text class="link-btn green" bindtap="goFollowup" data-idx="{{idx}}">💬 追问分析</text>
+            </view>
+          </view>
+        </view>
+      </block>
+      <view wx:if="{{loading}}" class="row-sys">
+        <view class="bubble-sys dim"><text>… {{analyzingHint}}</text></view>
+      </view>
+    </scroll-view>
+
+    <view wx:if="{{chatMessages.length}}" class="quick-bar">
+      <text class="quick-label">快速测试：</text>
+      <text class="quick-btn quick-critical" bindtap="quick" data-t="我是公安局，你账号涉案，立刻把钱转到指定安全账户配合调查，否则逮捕">极高</text>
+      <text class="quick-btn quick-high" bindtap="quick" data-t="我是你朋友小李，最近做生意资金周转不开，能先借我五千吗，月底一定还">高风险</text>
+      <text class="quick-btn quick-medium" bindtap="quick" data-t="您好，您的银行卡存在异常消费，请回复1确认是否本人操作">中风险</text>
+      <text class="quick-btn quick-safe" bindtap="quick" data-t="你好，我是隔壁王阿姨，明天社区有免费体检活动，记得带身份证来">安全</text>
+    </view>
+
+    <view class="input-area">
+      <view class="af-tab-row">
+        <view class="af-tab-btn {{inputMode==='text'?'active':''}}" bindtap="onMode" data-m="text">📝 文本</view>
+        <view class="af-tab-btn {{inputMode==='audio'?'active':''}}" bindtap="onMode" data-m="audio">🎵 音频</view>
+        <view class="af-tab-btn {{inputMode==='image'?'active':''}}" bindtap="onMode" data-m="image">🖼 图片</view>
+      </view>
+      <view wx:if="{{inputMode==='audio'}}" class="upload-hint" bindtap="mockAudio">点击模拟上传音频（演示转写）</view>
+      <view wx:if="{{inputMode==='image'}}" class="img-zone" bindtap="pickImage">
+        <text wx:if="{{!imagePath}}" class="img-zone-hint">点击选择；相机里轻点拍照、长按可录视频（最长 60 秒）</text>
+        <video wx:elif="{{imageIsVideo}}" class="prev prev-video" src="{{imagePath}}" controls />
+        <image wx:else src="{{imagePath}}" mode="widthFix" class="prev" />
+      </view>
+      <input wx:if="{{inputMode==='image'}}" class="af-input" value="{{imageDesc}}" placeholder="可选补充描述" bindinput="onImageDesc" />
+      <view wx:if="{{inputMode==='text'}}" class="send-wrap">
+        <view class="textarea-wrap">
+          <textarea class="chat-textarea" value="{{chatInput}}" placeholder="输入可疑内容…" disabled="{{loading}}" auto-height maxlength="2000" bindinput="onChatInput" />
+        </view>
+        <view class="send-btns">
+          <button class="btn-send" disabled="{{loading || !textReady}}" bindtap="chatSend">发送</button>
+          <button class="btn-clear" bindtap="clearChat">🗑</button>
+        </view>
+      </view>
+      <view wx:else class="send-wrap">
+        <view class="send-btns">
+          <button class="btn-send" disabled="{{loading}}" bindtap="chatSend">发送检测</button>
+          <button class="btn-clear" bindtap="clearChat">🗑</button>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="tips-panel af-card">
+    <text class="tips-h">🔰 检测说明</text>
+    <view class="tips-item {{lastRiskLevel==='critical'?'tips-active-critical':''}}">
+      <view class="tips-dot dot-critical"></view>
+      <view><text class="tips-title">极高风险</text><text class="tips-desc">{{lastRiskLevel==='critical'?'已识别：'+lastFraudType+'，已通知监护人':'自动通知监护人 + 生成报告'}}</text></view>
+    </view>
+    <view class="tips-item {{lastRiskLevel==='high'?'tips-active-high':''}}">
+      <view class="tips-dot dot-high"></view>
+      <view><text class="tips-title">高风险</text><text class="tips-desc">{{lastRiskLevel==='high'?'已识别：'+lastFraudType+'，请提高警惕':'弹出警告 + 通知监护人'}}</text></view>
+    </view>
+    <view class="tips-item {{lastRiskLevel==='medium'?'tips-active-medium':''}}">
+      <view class="tips-dot dot-medium"></view>
+      <view><text class="tips-title">中风险</text><text class="tips-desc">{{lastRiskLevel==='medium'?'已识别：'+lastFraudType+'，建议核实':'弹出警告提示'}}</text></view>
+    </view>
+    <view class="tips-item {{lastRiskLevel==='safe'||lastRiskLevel==='low'?'tips-active-safe':''}}">
+      <view class="tips-dot dot-safe"></view>
+      <view><text class="tips-title">安全</text><text class="tips-desc">{{lastRiskLevel==='safe'||lastRiskLevel==='low'?'未发现诈骗特征，内容正常':'内容正常'}}</text></view>
+    </view>
+    <text class="tips-li hot">反诈热线 96110</text>
+  </view>
+</view>
+
+<view class="modal" wx:if="{{showBlock}}" catchtouchmove="noop">
+  <view class="modal-inner danger">
+    <text class="mh">⚠️ {{blockTitle}}</text>
+    <text class="mb">{{blockMsg}}</text>
+    <button class="af-btn-primary" bindtap="closeBlock">我知道了</button>
+  </view>
+</view>
+
+<view class="modal" wx:if="{{showNotify}}" catchtouchmove="noop">
+  <view class="modal-inner">
+    <text class="mh">监护人已通知（模拟）</text>
+    <text class="mb">风险：{{notifyRecord.fraud_type}} · {{notifyRecord.time}}</text>
+    <button class="af-btn-outline" bindtap="closeNotify">关闭</button>
+  </view>
+</view>
+
+<wxs module="util">
+function roundPct(c) { c = +c; if (c!=c) return 0; return Math.round(c * 100); }
+module.exports.roundPct = roundPct;
+</wxs>

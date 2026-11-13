@@ -1,0 +1,79 @@
+page { background: #f0f0fa; }
+
+.guide-page {
+  padding: 28rpx;
+  box-sizing: border-box;
+}
+
+.gh-head {
+  margin-bottom: 28rpx;
+}
+
+.gh-t1 {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #1a2340;
+  display: block;
+}
+
+.gh-t2 {
+  font-size: 22rpx;
+  color: #8a9bbf;
+  margin-top: 8rpx;
+  display: block;
+  line-height: 1.5;
+}
+
+.g-section-label {
+  font-size: 24rpx;
+  font-weight: 600;
+  color: #8a9bbf;
+  letter-spacing: 2rpx;
+  margin: 24rpx 0 16rpx;
+}
+
+.g-card {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 16rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.05);
+}
+
+.g-card-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #1a2340;
+  margin-bottom: 14rpx;
+}
+
+.g-line {
+  font-size: 24rpx;
+  color: #4a5568;
+  line-height: 1.8;
+  display: block;
+}
+
+.g-row {
+  margin-bottom: 12rpx;
+}
+
+.af-badge {
+  padding: 6rpx 20rpx;
+  border-radius: 20rpx;
+  font-size: 22rpx;
+  font-weight: 600;
+}
+
+.af-badge-safe { background: #dcfce7; color: #16a34a; }
+.af-badge-low { background: #fef9c3; color: #ca8a04; }
+.af-badge-medium { background: #ffedd5; color: #ea580c; }
+.af-badge-high { background: #fee2e2; color: #dc2626; }
+.af-badge-critical { background: #fce7f3; color: #9d174d; }
+
+.g-desc {
+  font-size: 26rpx;
+  color: #4a5568;
+  line-height: 1.7;
+  display: block;
+}

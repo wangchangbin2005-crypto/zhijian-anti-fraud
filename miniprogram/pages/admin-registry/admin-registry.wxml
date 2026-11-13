@@ -1,0 +1,54 @@
+<view class="af-page admin-reg">
+  <view class="af-page-header-title">用户与监护管理</view>
+  <view class="af-page-header-sub">数据仅存本机 wx.storage：账号 antiFraud_accounts · 监护人 antiFraud_guardians</view>
+
+  <view class="af-card">
+    <view class="af-card-title">全部账号（{{users.length}}）</view>
+    <view wx:for="{{users}}" wx:key="username" class="user-row {{selected===item.username?'on':''}}" data-u="{{item.username}}" bindtap="pickUser">
+      <view class="u-main">
+        <text class="u-name">{{item.username}}</text>
+        <text class="u-role">{{item.role==='admin'?'管理端':'客户端'}}</text>
+      </view>
+      <text class="u-sub">监护人 {{item.guardianCount}} 人 · {{item.identity}} {{item.age}}</text>
+    </view>
+  </view>
+
+  <block wx:if="{{selected}}">
+    <view class="af-card">
+      <view class="af-card-title">已选：{{selected}}</view>
+      <view class="kv"><text class="k">角色</text><text>{{selectedMeta.role==='admin'?'管理端':'客户端'}}</text></view>
+      <view class="kv"><text class="k">身份</text><text>{{selectedMeta.identity}}</text></view>
+      <view class="kv" wx:if="{{selectedMeta.age}}"><text class="k">年龄</text><text>{{selectedMeta.age}}</text></view>
+      <view class="pwd-row">
+        <input class="af-input pwd-in" value="{{newPwd}}" placeholder="新密码（≥6位）" password bindinput="onNewPwd" />
+        <button class="af-btn-outline sm" bindtap="applyPwd">更新密码</button>
+      </view>
+      <button class="af-btn-outline bad full mt" bindtap="removeUser">删除该账号及监护人</button>
+    </view>
+
+    <view class="af-card">
+      <view class="af-card-title">为该用户添加监护人</view>
+      <input class="af-input" value="{{form.name}}" placeholder="姓名" data-k="name" bindinput="onForm" />
+      <picker range="{{relations}}" value="{{relIndex}}" bindchange="onRel" class="mt"><view class="af-input">{{relations[relIndex]}}</view></picker>
+      <input class="af-input mt" value="{{form.phone}}" placeholder="手机号" type="number" data-k="phone" bindinput="onForm" />
+      <input class="af-input mt" value="{{form.email}}" placeholder="邮箱" data-k="email" bindinput="onForm" />
+      <view class="chips">
+        <text wx:for="{{levels}}" wx:key="*this" class="chip {{form.notify_levels.indexOf(item)>=0?'on':''}}" data-l="{{item}}" bindtap="toggleLv">{{labels[item]}}+</text>
+      </view>
+      <button class="af-btn-primary full mt" bindtap="addGuardian">保存监护人</button>
+    </view>
+
+    <view class="af-card-title sec">监护人列表（{{guardians.length}}）</view>
+    <view wx:if="{{!guardians.length}}" class="empty">该用户暂无监护人</view>
+    <view wx:for="{{guardians}}" wx:key="id" class="af-card gd">
+      <view class="ga">{{item.name[0]}}</view>
+      <view class="gi">
+        <text class="gn">{{item.name}} <text class="gr">{{item.relation}}</text></text>
+        <text class="gdetail">📱 {{item.phone}} · 📧 {{item.email || '—'}}</text>
+      </view>
+      <button class="af-btn-outline sm bad" bindtap="removeG" data-id="{{item.id}}">删除</button>
+    </view>
+  </block>
+
+  <view wx:else class="hint">点击上方账号进行管理</view>
+</view>

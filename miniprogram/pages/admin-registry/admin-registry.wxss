@@ -1,0 +1,166 @@
+.admin-reg .sec {
+  margin: 24rpx 0 12rpx;
+  padding-left: 8rpx;
+}
+
+.user-row {
+  padding: 20rpx 16rpx;
+  border-radius: 12rpx;
+  border: 1px solid var(--border);
+  margin-bottom: 12rpx;
+  background: rgba(6, 11, 22, 0.4);
+}
+
+.user-row.on {
+  border-color: rgba(59, 130, 246, 0.55);
+  background: rgba(59, 130, 246, 0.1);
+}
+
+.u-main {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.u-name {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #e2eaf8;
+}
+
+.u-role {
+  font-size: 22rpx;
+  color: #93c5fd;
+  padding: 4rpx 12rpx;
+  border-radius: 8rpx;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.u-sub {
+  display: block;
+  font-size: 22rpx;
+  color: #6b82a8;
+  margin-top: 8rpx;
+}
+
+.kv {
+  display: flex;
+  justify-content: space-between;
+  font-size: 26rpx;
+  color: #94a3b8;
+  margin-bottom: 12rpx;
+}
+
+.kv .k {
+  color: #6b82a8;
+}
+
+.pwd-row {
+  display: flex;
+  gap: 12rpx;
+  align-items: center;
+  margin-top: 16rpx;
+}
+
+.pwd-in {
+  flex: 1;
+}
+
+.sm {
+  flex-shrink: 0;
+  font-size: 24rpx;
+  padding: 16rpx 20rpx;
+  margin: 0;
+}
+
+.full {
+  width: 100%;
+}
+
+.bad {
+  color: #f87171 !important;
+  border-color: rgba(239, 68, 68, 0.4) !important;
+}
+
+.mt {
+  margin-top: 16rpx;
+  display: block;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+  margin-top: 20rpx;
+}
+
+.chip {
+  padding: 10rpx 20rpx;
+  border-radius: 10rpx;
+  border: 1px solid var(--border);
+  font-size: 22rpx;
+  color: #6b82a8;
+}
+
+.chip.on {
+  border-color: #3b82f6;
+  color: #93c5fd;
+  background: rgba(59, 130, 246, 0.1);
+}
+
+.empty {
+  text-align: center;
+  color: #6b82a8;
+  padding: 32rpx;
+  font-size: 26rpx;
+}
+
+.hint {
+  text-align: center;
+  color: #3d5278;
+  padding: 40rpx 20rpx;
+  font-size: 26rpx;
+}
+
+.gd {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.ga {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  background: rgba(59, 130, 246, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+  color: #93c5fd;
+}
+
+.gi {
+  flex: 1;
+  min-width: 200rpx;
+}
+
+.gn {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #fff;
+}
+
+.gr {
+  font-size: 22rpx;
+  color: #6b82a8;
+  font-weight: 400;
+}
+
+.gdetail {
+  display: block;
+  font-size: 22rpx;
+  color: #6b82a8;
+  margin-top: 6rpx;
+}

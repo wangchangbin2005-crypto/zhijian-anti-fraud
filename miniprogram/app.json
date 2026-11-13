@@ -1,0 +1,33 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/intro/intro",
+    "pages/home/home",
+    "pages/detect/detect",
+    "pages/followup/followup",
+    "pages/history/history",
+    "pages/profile/profile",
+    "pages/guardian/guardian",
+    "pages/learn/learn",
+    "pages/guide/guide"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "反诈智能体",
+    "backgroundColor": "#f0f0fa",
+    "backgroundTextStyle": "light"
+  },
+  "permission": {
+    "scope.camera": {
+      "desc": "用于拍摄或长按录制视频，供检测页选择素材"
+    },
+    "scope.record": {
+      "desc": "录制视频时需要使用麦克风"
+    }
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2",
+  "lazyCodeLoading": "requiredComponents",
+  "usingComponents": {}
+}

@@ -1,0 +1,70 @@
+<view class="profile-page">
+
+  <!-- 头部 -->
+  <view class="hero-card">
+    <view class="avatar">{{user.unameChar}}</view>
+    <view class="hero-info">
+      <text class="username">{{user.username}}</text>
+      <text class="identity-tag">{{idLabel}}{{user.age ? ' · '+user.age+'岁' : ''}}</text>
+    </view>
+    <view class="join-badge">
+      <text class="join-num">{{joinDays}}</text>
+      <text class="join-label">天</text>
+    </view>
+  </view>
+
+  <!-- 统计 -->
+  <view class="section-title">使用统计</view>
+  <view class="stats-grid">
+    <view class="stat-item">
+      <text class="stat-value" style="color:#4a6cf7">{{stats.total}}</text>
+      <text class="stat-label">累计检测</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-value" style="color:#ef4444">{{stats.flagged}}</text>
+      <text class="stat-label">风险拦截</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-value" style="color:#22c55e">{{stats.safe}}</text>
+      <text class="stat-label">安全通过</text>
+    </view>
+    <view class="stat-item">
+      <text class="stat-value" style="color:#f59e0b">{{safeRate}}</text>
+      <text class="stat-label">安全率</text>
+    </view>
+  </view>
+
+  <!-- 安全提示 -->
+  <view class="section-title">反诈提示</view>
+  <view class="tips-card">
+    <view class="tip-row">
+      <text class="tip-icon">🏛️</text>
+      <text class="tip-text">公检法不会让你转账到"安全账户"</text>
+    </view>
+    <view class="tip-row">
+      <text class="tip-icon">💰</text>
+      <text class="tip-text">先交钱才能提现的都是骗局</text>
+    </view>
+    <view class="tip-row">
+      <text class="tip-icon">📱</text>
+      <text class="tip-text">陌生链接不点，验证码不告诉任何人</text>
+    </view>
+    <view class="tip-row">
+      <text class="tip-icon">☎️</text>
+      <text class="tip-text">遇到可疑情况拨打 96110 核实</text>
+    </view>
+  </view>
+
+  <!-- 退出 -->
+  <view class="section-title">账号</view>
+  <view class="menu-card">
+    <view class="menu-item" bindtap="logout">
+      <text class="menu-icon">🚪</text>
+      <text class="menu-label logout-text">退出登录</text>
+      <text class="menu-arrow">›</text>
+    </view>
+  </view>
+
+  <view class="footer-note">数据仅存于本设备，清除缓存后丢失</view>
+
+</view>

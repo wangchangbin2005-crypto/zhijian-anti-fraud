@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "实时检测",
+  "usingComponents": {
+    "aria-assistant": "/components/aria-assistant/aria-assistant"
+  }
+}

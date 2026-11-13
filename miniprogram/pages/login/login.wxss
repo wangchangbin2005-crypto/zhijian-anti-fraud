@@ -1,0 +1,262 @@
+page {
+  background: #eef0ff;
+  min-height: 100vh;
+}
+
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 32rpx 60rpx;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 背景装饰圆 */
+.bg-circle1 {
+  position: fixed;
+  top: -120rpx;
+  right: -80rpx;
+  width: 400rpx;
+  height: 400rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(74,108,247,0.15), rgba(124,58,237,0.1));
+}
+
+.bg-circle2 {
+  position: fixed;
+  top: 200rpx;
+  left: -100rpx;
+  width: 280rpx;
+  height: 280rpx;
+  border-radius: 50%;
+  background: rgba(74,108,247,0.08);
+}
+
+.bg-circle3 {
+  position: fixed;
+  bottom: 100rpx;
+  right: -60rpx;
+  width: 320rpx;
+  height: 320rpx;
+  border-radius: 50%;
+  background: rgba(124,58,237,0.07);
+}
+
+/* 顶部logo区 */
+.top-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80rpx 0 48rpx;
+  position: relative;
+  z-index: 1;
+}
+
+.shield-wrap {
+  position: relative;
+  width: 120rpx;
+  height: 120rpx;
+  margin-bottom: 24rpx;
+}
+
+.shield {
+  width: 120rpx;
+  height: 120rpx;
+  background: linear-gradient(135deg, #4a6cf7, #7c3aed);
+  border-radius: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 56rpx;
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 8rpx 32rpx rgba(74,108,247,0.35);
+  position: relative;
+  z-index: 1;
+}
+
+.shield-ring {
+  position: absolute;
+  top: -12rpx;
+  left: -12rpx;
+  right: -12rpx;
+  bottom: -12rpx;
+  border-radius: 38rpx;
+  border: 3rpx solid rgba(74,108,247,0.2);
+}
+
+.app-title {
+  font-size: 48rpx;
+  font-weight: 800;
+  color: #1a2340;
+  letter-spacing: 4rpx;
+}
+
+.app-slogan {
+  font-size: 24rpx;
+  color: #8a9bbf;
+  margin-top: 10rpx;
+  letter-spacing: 2rpx;
+}
+
+/* 登录卡片 */
+.login-card {
+  width: 100%;
+  background: #fff;
+  border-radius: 32rpx;
+  padding: 40rpx 36rpx 48rpx;
+  box-shadow: 0 8rpx 48rpx rgba(74,108,247,0.12);
+  position: relative;
+  z-index: 1;
+}
+
+.auth-tabs {
+  display: flex;
+  background: #f0f0fa;
+  border-radius: 16rpx;
+  padding: 6rpx;
+  margin-bottom: 32rpx;
+}
+
+.auth-tab {
+  flex: 1;
+  text-align: center;
+  padding: 20rpx 0;
+  font-size: 30rpx;
+  color: #8a9bbf;
+  border-radius: 12rpx;
+  font-weight: 500;
+}
+
+.auth-tab.active {
+  background: #fff;
+  color: #4a6cf7;
+  font-weight: 700;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.08);
+}
+
+.sub-tabs {
+  display: flex;
+  margin-bottom: 28rpx;
+  border-bottom: 1.5rpx solid #f0f0fa;
+}
+
+.sub-tab {
+  flex: 1;
+  text-align: center;
+  padding: 16rpx 0;
+  font-size: 26rpx;
+  color: #b0bccc;
+  border-bottom: 3rpx solid transparent;
+  margin-bottom: -1.5rpx;
+}
+
+.sub-tab.active {
+  color: #4a6cf7;
+  border-bottom-color: #4a6cf7;
+  font-weight: 600;
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  background: #f8f8ff;
+  border-radius: 16rpx;
+  padding: 0 24rpx;
+  margin-bottom: 20rpx;
+  border: 1.5rpx solid #eef0f6;
+  height: 96rpx;
+}
+
+.field-icon {
+  font-size: 32rpx;
+  margin-right: 16rpx;
+  flex-shrink: 0;
+}
+
+.field-input {
+  flex: 1;
+  height: 96rpx;
+  font-size: 28rpx;
+  color: #1a2340;
+  background: transparent;
+}
+
+.ph { color: #c0c8d8; }
+
+.picker-val {
+  color: #1a2340;
+  font-size: 28rpx;
+  line-height: 96rpx;
+}
+
+.sms-btn {
+  flex-shrink: 0;
+  height: 64rpx;
+  line-height: 64rpx;
+  padding: 0 24rpx;
+  background: #4a6cf7;
+  color: #fff;
+  border-radius: 12rpx;
+  font-size: 24rpx;
+  border: none;
+  margin: 0;
+}
+
+.field-row {
+  display: flex;
+  gap: 16rpx;
+}
+
+.field.half { flex: 1; }
+
+.dev-code {
+  display: block;
+  font-size: 22rpx;
+  color: #4a6cf7;
+  margin: -10rpx 0 16rpx;
+}
+
+.error-tip {
+  font-size: 24rpx;
+  color: #ef4444;
+  background: #fff5f5;
+  border-radius: 12rpx;
+  padding: 16rpx 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.login-btn {
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+  background: linear-gradient(135deg, #4a6cf7, #7c3aed);
+  color: #fff;
+  border-radius: 20rpx;
+  font-size: 32rpx;
+  font-weight: 700;
+  border: none;
+  margin: 8rpx 0 24rpx;
+  box-shadow: 0 6rpx 24rpx rgba(74,108,247,0.35);
+  letter-spacing: 4rpx;
+}
+
+.hint-text {
+  display: block;
+  text-align: center;
+  font-size: 22rpx;
+  color: #b0bccc;
+  margin-bottom: 8rpx;
+}
+
+.intro-link {
+  display: block;
+  text-align: center;
+  font-size: 26rpx;
+  color: #4a6cf7;
+  margin-top: 16rpx;
+  font-weight: 500;
+}

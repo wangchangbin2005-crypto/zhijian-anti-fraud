@@ -1,0 +1,16 @@
+fastapi
+uvicorn
+python-multipart
+pydantic>=2
+openai
+httpx
+Pillow
+pydub
+SpeechRecognition
+pytesseract
+openai-whisper
+easyocr
+chromadb
+sentence-transformers
+aiosmtplib
+APScheduler<4

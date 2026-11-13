@@ -1,0 +1,20 @@
+<view class="guide-page">
+  <view class="gh-head">
+    <text class="gh-t1">使用指南</text>
+    <text class="gh-t2">了解常见诈骗类型与风险等级</text>
+  </view>
+
+  <view class="g-section-label">常见诈骗类型</view>
+  <view class="g-card" wx:for="{{fraudGuide}}" wx:key="type">
+    <view class="g-card-title">{{item.type}}</view>
+    <view wx:for="{{item.tips}}" wx:for-item="tip" wx:key="*this" class="g-line">• {{tip}}</view>
+  </view>
+
+  <view class="g-section-label">风险等级含义</view>
+  <view class="g-card" wx:for="{{levelGuide}}" wx:key="level">
+    <view class="g-row">
+      <text class="af-badge af-badge-{{item.level}}">{{labels[item.level]}}</text>
+    </view>
+    <text class="g-desc">{{item.desc}}</text>
+  </view>
+</view>

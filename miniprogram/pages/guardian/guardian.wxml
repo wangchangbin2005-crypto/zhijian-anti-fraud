@@ -1,0 +1,40 @@
+<view class="page">
+  <view class="section-title">监护人设置</view>
+  <view class="section-sub">守护家人安全，及时通知风险</view>
+
+  <view class="owner-tag" wx:if="{{ownerUsername}}">账号：{{ownerUsername}}</view>
+
+  <view class="card" wx:if="{{ownerUsername}}">
+    <view class="card-title">添加监护人</view>
+    <input class="input" value="{{form.name}}" placeholder="姓名" bindinput="onName" />
+    <picker range="{{relations}}" value="{{relIndex}}" bindchange="onRel" class="picker-wrap">
+      <view class="input picker-text">{{relations[relIndex]}}</view>
+    </picker>
+    <input class="input" value="{{form.phone}}" placeholder="手机号" type="number" bindinput="onPhone" />
+    <input class="input" value="{{form.email}}" placeholder="邮箱（选填）" bindinput="onEmail" />
+    <view class="label">通知等级</view>
+    <view class="chips">
+      <button class="chip {{lvMedium?'on':''}}" bindtap="toggleLv" data-l="medium">中风险</button>
+      <button class="chip {{lvHigh?'on':''}}" bindtap="toggleLv" data-l="high">高风险</button>
+      <button class="chip {{lvCritical?'on':''}}" bindtap="toggleLv" data-l="critical">极高风险</button>
+    </view>
+    <button class="btn-primary" bindtap="save">保存监护人</button>
+  </view>
+
+  <view wx:if="{{ownerUsername && !list.length}}" class="empty">暂未设置监护人</view>
+
+  <view wx:for="{{list}}" wx:key="id" class="guardian-card">
+    <view class="g-avatar">{{item.name[0]}}</view>
+    <view class="g-info">
+      <view class="g-name">{{item.name}} <text class="g-rel">{{item.relation}}</text></view>
+      <view class="g-detail">📱 {{item.phone}}</view>
+      <view class="g-detail" wx:if="{{item.email}}">📧 {{item.email}}</view>
+      <view class="g-time">{{item.created_at}}</view>
+    </view>
+    <view class="g-actions">
+      <button class="btn-sm" bindtap="testN" data-id="{{item.id}}">测试</button>
+      <button class="btn-sm btn-warn" bindtap="alertN" data-id="{{item.id}}">预警</button>
+      <button class="btn-sm btn-danger" bindtap="remove" data-id="{{item.id}}">删除</button>
+    </view>
+  </view>
+</view>

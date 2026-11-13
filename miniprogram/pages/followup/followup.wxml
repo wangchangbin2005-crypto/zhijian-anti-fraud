@@ -1,0 +1,70 @@
+<view class="fu-root">
+  <view class="fu-head">
+    <view class="fu-t1">AI 反诈助手</view>
+    <view class="fu-t2">有任何疑问都可以问我</view>
+  </view>
+
+  <view class="ctx-bar" wx:if="{{ctx}}">
+    <view class="ctx-info">
+      <text class="ctx-badge">{{ctx.riskLabel}}</text>
+      <text class="ctx-type">{{ctx.fraudType}}</text>
+    </view>
+    <text class="ctx-clear" bindtap="clearCtx">清除上下文</text>
+  </view>
+
+  <scroll-view scroll-y class="msg-scroll" scroll-into-view="{{scrollTo}}" show-scrollbar="{{false}}">
+    <view wx:if="{{!messages.length}}" class="empty-state">
+      <view class="empty-icon">🛡️</view>
+      <text class="empty-tip">有什么想问的？</text>
+      <view class="quick-list">
+        <view wx:for="{{quick}}" wx:key="*this" class="quick-item" bindtap="useQuick" data-q="{{item}}">
+          <text>{{item}}</text>
+          <text class="quick-arrow">›</text>
+        </view>
+      </view>
+    </view>
+
+    <block wx:for="{{messages}}" wx:for-index="idx" wx:key="idx">
+      <view id="f{{idx}}" class="anchor"></view>
+      <view wx:if="{{item.role==='user'}}" class="row-user">
+        <view class="bubble-user">
+          <text>{{item.content}}</text>
+          <text class="tm">{{item.time}}</text>
+        </view>
+      </view>
+      <view wx:elif="{{item.role==='assistant'}}" class="row-bot">
+        <view class="bot-avatar">AI</view>
+        <view class="bubble-bot {{item.streaming ? 'bubble-streaming' : ''}}">
+          <view wx:if="{{item.reasoningRich}}" class="reasoning-box">
+            <text class="reasoning-label">思考过程</text>
+            <scroll-view scroll-y class="reasoning-scroll" show-scrollbar="{{true}}">
+              <rich-text class="reasoning-md reasoning-md-inner" nodes="{{item.reasoningRich}}"></rich-text>
+            </scroll-view>
+            <text class="reasoning-hint">框内滑动查看</text>
+          </view>
+          <rich-text wx:if="{{item.richContent || item.content}}" class="md-content" nodes="{{item.richContent || item.content}}"></rich-text>
+          <text wx:elif="{{item.streaming}}" class="stream-wait">正在生成回答…</text>
+          <text wx:if="{{item.streaming}}" class="stream-cursor">▍</text>
+          <text class="tm">{{item.time}}</text>
+        </view>
+      </view>
+    </block>
+
+    <view wx:if="{{loading && !streamingAssistant}}" class="row-bot">
+      <view id="loading" class="anchor"></view>
+      <view class="bot-avatar">AI</view>
+      <view class="bubble-bot loading-dot">
+        <text>{{thinkingText || '请稍候...'}}</text>
+      </view>
+    </view>
+
+    <view class="pad-bottom"></view>
+  </scroll-view>
+
+  <view class="fu-bar">
+    <textarea class="fu-input" value="{{input}}" placeholder="输入问题…"
+      disabled="{{loading}}" auto-height maxlength="2000" bindinput="onInput"
+      show-confirm-bar="{{false}}" confirm-type="send" cursor-spacing="24" />
+    <button class="fu-send" disabled="{{loading||!canSend}}" bindtap="send">发送</button>
+  </view>
+</view>

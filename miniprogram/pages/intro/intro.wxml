@@ -1,0 +1,30 @@
+<view class="intro-page">
+  <view class="skip" bindtap="skip">跳过 →</view>
+  <block wx:if="{{phase==='intro'}}">
+    <view class="fs-card" bindtap="onCardTap">
+      <view class="fs-counter">{{idx+1}} / {{total}}</view>
+      <view class="progress" style="width:{{(idx+1)/total*100}}%"></view>
+      <block wx:if="{{!revealed}}">
+        <text class="fs-lock">🔐</text>
+        <text class="fs-tag">{{cards[idx].tag}}</text>
+        <text class="fs-title">{{cards[idx].label}}</text>
+        <text class="fs-hint">👇 点击揭开诈骗真相</text>
+      </block>
+      <block wx:else>
+        <text class="fs-emoji">{{cards[idx].emoji}}</text>
+        <text class="fs-btitle">{{cards[idx].label}}</text>
+        <text class="fs-desc">{{cards[idx].desc}}</text>
+        <view class="fs-warn">⚠️ {{cards[idx].warn}}</view>
+        <text class="fs-next">{{idx < total-1 ? '→ 点击下一张' : '✓ 点击完成'}}</text>
+      </block>
+    </view>
+  </block>
+  <block wx:if="{{phase==='done'}}">
+    <view class="unlock">
+      <text class="big">⬡</text>
+      <text class="ut">你已了解 8 种诈骗套路</text>
+      <text class="us">知己知彼 · 遇事不决问 96110</text>
+      <button class="ubtn" bindtap="skip">进入系统</button>
+    </view>
+  </block>
+</view>

@@ -1,0 +1,86 @@
+<view class="home-page">
+
+  <!-- 顶部英雄区 -->
+  <view class="hero">
+    <view class="hero-content">
+      <view class="hero-top">
+        <view class="logo-wrap">
+          <image class="logo-img" src="../../utils/30e165d18232a21c9b0854ee83a74dd7.png" mode="aspectFit" />
+        </view>
+        <view class="hero-text">
+          <text class="app-name">智鉴</text>
+          <text class="app-sub">AI驱动 · 实时识别 · 守护安全</text>
+        </view>
+      </view>
+      <view class="hero-stats">
+        <view class="hs-item">
+          <text class="hs-num">96110</text>
+          <text class="hs-label">反诈热线</text>
+        </view>
+        <view class="hs-div"></view>
+        <view class="hs-item">
+          <text class="hs-num">24h</text>
+          <text class="hs-label">AI守护</text>
+        </view>
+        <view class="hs-div"></view>
+        <view class="hs-item">
+          <text class="hs-num">多模态</text>
+          <text class="hs-label">智能检测</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 核心功能 -->
+  <view class="section-label">核心功能</view>
+  <view class="main-grid">
+    <view class="main-tile detect" bindtap="go" data-url="/pages/detect/detect">
+      <view class="main-tile-icon">🔍</view>
+      <view class="main-tile-info">
+        <text class="main-tile-name">实时检测</text>
+        <text class="main-tile-desc">AI分析可疑内容</text>
+      </view>
+      <view class="main-tile-arrow">›</view>
+    </view>
+    <view class="main-tile ai" bindtap="go" data-url="/pages/followup/followup">
+      <view class="main-tile-icon">🤖</view>
+      <view class="main-tile-info">
+        <text class="main-tile-name">AI小助手</text>
+        <text class="main-tile-desc">智能反诈问答</text>
+      </view>
+      <view class="main-tile-arrow">›</view>
+    </view>
+  </view>
+
+  <!-- 其他功能 -->
+  <view class="section-label">更多</view>
+  <view class="sub-grid">
+    <view class="sub-tile" bindtap="go" data-url="/pages/history/history">
+      <text class="sub-ic">📋</text>
+      <text class="sub-label">检测历史</text>
+    </view>
+    <view class="sub-tile" bindtap="go" data-url="/pages/learn/learn">
+      <text class="sub-ic">🎓</text>
+      <text class="sub-label">学习大厅</text>
+    </view>
+    <view class="sub-tile" bindtap="go" data-url="/pages/guardian/guardian">
+      <text class="sub-ic">👨‍👩‍👧</text>
+      <text class="sub-label">监护人</text>
+    </view>
+    <view class="sub-tile" bindtap="go" data-url="/pages/profile/profile">
+      <text class="sub-ic">👤</text>
+      <text class="sub-label">个人中心</text>
+    </view>
+    <view class="sub-tile" bindtap="go" data-url="/pages/guide/guide">
+      <text class="sub-ic">📖</text>
+      <text class="sub-label">使用指南</text>
+    </view>
+  </view>
+
+  <!-- 底部提示 -->
+  <view class="hotline-bar">
+    <text class="hotline-icon">🚨</text>
+    <text class="hotline-text">遇疑请拨 96110 · 国家反诈专线</text>
+  </view>
+
+</view>

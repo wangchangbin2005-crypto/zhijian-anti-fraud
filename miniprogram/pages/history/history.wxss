@@ -1,0 +1,79 @@
+page { background: #f0f0fa; }
+
+.af-page {
+  padding: 28rpx;
+  box-sizing: border-box;
+}
+
+.af-page-header-title {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #1a2340;
+  margin-bottom: 8rpx;
+}
+
+.af-page-header-sub {
+  font-size: 22rpx;
+  color: #8a9bbf;
+  margin-bottom: 24rpx;
+}
+
+.empty {
+  text-align: center;
+  color: #b0bccc;
+  padding: 80rpx 0;
+  font-size: 28rpx;
+}
+
+.af-card {
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 16rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0,0,0,0.05);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.af-badge {
+  padding: 6rpx 18rpx;
+  border-radius: 20rpx;
+  font-size: 22rpx;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.af-badge-safe { background: #dcfce7; color: #16a34a; }
+.af-badge-low { background: #fef9c3; color: #ca8a04; }
+.af-badge-medium { background: #ffedd5; color: #ea580c; }
+.af-badge-high { background: #fee2e2; color: #dc2626; }
+.af-badge-critical { background: #fce7f3; color: #9d174d; }
+
+.mid { flex: 1; min-width: 0; }
+
+.t {
+  display: block;
+  font-size: 26rpx;
+  color: #1a2340;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.s {
+  display: block;
+  font-size: 22rpx;
+  color: #8a9bbf;
+  margin-top: 6rpx;
+}
+
+.p {
+  font-size: 26rpx;
+  color: #4a6cf7;
+  font-weight: 600;
+  flex-shrink: 0;
+}

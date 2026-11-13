@@ -1,0 +1,166 @@
+page { background: #f0f0fa; }
+
+.profile-page {
+  padding: 28rpx 28rpx 80rpx;
+  box-sizing: border-box;
+}
+
+.hero-card {
+  background: linear-gradient(135deg, #4a6cf7, #7a9cff);
+  border-radius: 24rpx;
+  padding: 40rpx 32rpx;
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+  margin-bottom: 32rpx;
+  box-shadow: 0 4rpx 24rpx rgba(74,108,247,0.25);
+}
+
+.avatar {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.25);
+  color: #fff;
+  font-size: 42rpx;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.hero-info { flex: 1; }
+
+.username {
+  display: block;
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #fff;
+}
+
+.identity-tag {
+  display: block;
+  font-size: 24rpx;
+  color: rgba(255,255,255,0.75);
+  margin-top: 8rpx;
+}
+
+.join-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255,255,255,0.2);
+  border-radius: 16rpx;
+  padding: 16rpx 20rpx;
+}
+
+.join-num {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #fff;
+}
+
+.join-label {
+  font-size: 20rpx;
+  color: rgba(255,255,255,0.75);
+}
+
+.section-title {
+  font-size: 24rpx;
+  font-weight: 600;
+  color: #8a9bbf;
+  letter-spacing: 2rpx;
+  margin-bottom: 16rpx;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16rpx;
+  margin-bottom: 32rpx;
+}
+
+.stat-item {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 28rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 2rpx 10rpx rgba(0,0,0,0.04);
+}
+
+.stat-value {
+  font-size: 44rpx;
+  font-weight: 700;
+}
+
+.stat-label {
+  font-size: 22rpx;
+  color: #8a9bbf;
+  margin-top: 8rpx;
+}
+
+.tips-card {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 8rpx 24rpx;
+  margin-bottom: 32rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0,0,0,0.04);
+}
+
+.tip-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 16rpx;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #f4f6fb;
+}
+
+.tip-row:last-child { border-bottom: none; }
+
+.tip-icon { font-size: 32rpx; flex-shrink: 0; }
+
+.tip-text {
+  font-size: 26rpx;
+  color: #2d3748;
+  line-height: 1.6;
+  flex: 1;
+}
+
+.menu-card {
+  background: #fff;
+  border-radius: 20rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 10rpx rgba(0,0,0,0.04);
+  margin-bottom: 32rpx;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 32rpx 28rpx;
+  gap: 16rpx;
+}
+
+.menu-icon { font-size: 36rpx; }
+
+.menu-label {
+  flex: 1;
+  font-size: 28rpx;
+  color: #1a2340;
+}
+
+.logout-text { color: #ef4444; }
+
+.menu-arrow {
+  font-size: 36rpx;
+  color: #c0c8d8;
+}
+
+.footer-note {
+  text-align: center;
+  font-size: 22rpx;
+  color: #c0c8d8;
+}

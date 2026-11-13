@@ -1,0 +1,267 @@
+page {
+  background: #f0f0fa;
+  min-height: 100vh;
+}
+
+.home-page {
+  padding-bottom: 60rpx;
+  box-sizing: border-box;
+}
+
+/* ===== 英雄区：渐变用多段色 + 柔光叠层，避免「一圈一圈」的硬边 ===== */
+.hero {
+  position: relative;
+  padding: 44rpx 36rpx 40rpx;
+  background: linear-gradient(
+    168deg,
+    #2f4ec4 0%,
+    #3d5fd8 22%,
+    #4d6ee3 48%,
+    #5f7fea 72%,
+    #7094f2 100%
+  );
+  border-radius: 0 0 44rpx 44rpx;
+  margin-bottom: 36rpx;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    130% 85% at 88% 8%,
+    rgba(255, 255, 255, 0.18) 0%,
+    rgba(255, 255, 255, 0.04) 42%,
+    transparent 68%
+  );
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    100% 70% at 5% 92%,
+    rgba(18, 35, 95, 0.35) 0%,
+    transparent 55%
+  );
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-top {
+  display: flex;
+  align-items: center;
+  gap: 32rpx;
+  margin-bottom: 32rpx;
+}
+
+/* Logo：同色系低对比卡片，尽量与背景自然融合 */
+.logo-wrap {
+  position: relative;
+  width: 116rpx;
+  height: 116rpx;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6rpx;
+  box-sizing: border-box;
+  border-radius: 22rpx;
+  /* 透明底：小框内部直接透出 hero 渐变，实现“同底色” */
+  background: transparent;
+  overflow: hidden;
+}
+
+.logo-img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.hero-text {
+  flex: 1;
+  min-width: 0;
+  padding-top: 2rpx;
+}
+
+.app-name {
+  display: block;
+  font-size: 44rpx;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 4rpx;
+  line-height: 1.25;
+}
+
+.app-sub {
+  display: block;
+  font-size: 24rpx;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.86);
+  margin-top: 12rpx;
+  letter-spacing: 1rpx;
+}
+
+.hero-stats {
+  display: flex;
+  align-items: stretch;
+  background: rgba(255, 255, 255, 0.11);
+  border: 1rpx solid rgba(255, 255, 255, 0.14);
+  border-radius: 22rpx;
+  padding: 22rpx 12rpx;
+  box-sizing: border-box;
+}
+
+.hs-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8rpx;
+}
+
+.hs-num {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #fff;
+}
+
+.hs-label {
+  font-size: 20rpx;
+  color: rgba(255,255,255,0.7);
+}
+
+.hs-div {
+  width: 1rpx;
+  align-self: stretch;
+  min-height: 52rpx;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.28) 20%,
+    rgba(255, 255, 255, 0.28) 80%,
+    transparent 100%
+  );
+}
+
+/* ===== 区块标题 ===== */
+.section-label {
+  font-size: 24rpx;
+  font-weight: 600;
+  color: #8a9bbf;
+  letter-spacing: 2rpx;
+  padding: 0 36rpx;
+  margin-bottom: 16rpx;
+}
+
+/* ===== 主功能双列 ===== */
+.main-grid {
+  padding: 0 36rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+  margin-bottom: 36rpx;
+}
+
+.main-tile {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+  padding: 32rpx 28rpx;
+  border-radius: 24rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.08);
+}
+
+.main-tile.detect {
+  background: linear-gradient(135deg, #4a6cf7, #6a8dff);
+}
+
+.main-tile.ai {
+  background: linear-gradient(135deg, #7c3aed, #a78bfa);
+}
+
+.main-tile-icon {
+  font-size: 52rpx;
+  flex-shrink: 0;
+}
+
+.main-tile-info { flex: 1; }
+
+.main-tile-name {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #fff;
+}
+
+.main-tile-desc {
+  display: block;
+  font-size: 22rpx;
+  color: rgba(255,255,255,0.75);
+  margin-top: 6rpx;
+}
+
+.main-tile-arrow {
+  font-size: 48rpx;
+  color: rgba(255,255,255,0.6);
+  font-weight: 300;
+}
+
+/* ===== 子功能网格 ===== */
+.sub-grid {
+  padding: 0 36rpx;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16rpx;
+  margin-bottom: 40rpx;
+}
+
+.sub-tile {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 28rpx 12rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.05);
+  border: 1.5rpx solid #eef0f6;
+}
+
+.sub-ic { font-size: 44rpx; }
+
+.sub-label {
+  font-size: 24rpx;
+  color: #1a2340;
+  font-weight: 500;
+}
+
+/* ===== 底部热线 ===== */
+.hotline-bar {
+  margin: 0 36rpx;
+  background: linear-gradient(135deg, #fff1f1, #ffe4e4);
+  border: 1.5rpx solid #fecaca;
+  border-radius: 20rpx;
+  padding: 24rpx 28rpx;
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.hotline-icon { font-size: 36rpx; }
+
+.hotline-text {
+  font-size: 26rpx;
+  color: #dc2626;
+  font-weight: 500;
+}

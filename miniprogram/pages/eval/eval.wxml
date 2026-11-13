@@ -1,0 +1,40 @@
+<view class="af-page">
+  <view class="af-page-header-title">评估报告</view>
+  <view class="af-page-header-sub">基于 data/eval_tests 静态跑分</view>
+  <view class="af-card">
+    <button class="af-btn-primary" loading="{{running}}" bindtap="run" disabled="{{running}}">运行评估</button>
+    <button class="af-btn-outline mt" bindtap="exportTxt" wx:if="{{report}}">复制报告文本</button>
+    <view wx:if="{{running}}" class="prog">进度 {{progress}}/{{total}}</view>
+  </view>
+  <block wx:if="{{report}}">
+    <view class="af-stat-grid">
+      <view class="af-stat"><text class="af-stat-value" style="color:{{report.metrics.type_accuracy>=0.9?'#10b981':'#ef4444'}}">{{util.pct(report.metrics.type_accuracy)}}%</text><text class="af-stat-label">识别准确率</text></view>
+      <view class="af-stat"><text class="af-stat-value" style="color:#3b82f6">{{util.pct(report.metrics.f1_score)}}%</text><text class="af-stat-label">F1</text></view>
+      <view class="af-stat"><text class="af-stat-value">{{util.pct(report.metrics.false_positive_rate)}}%</text><text class="af-stat-label">误报率</text></view>
+      <view class="af-stat"><text class="af-stat-value">{{util.fix1(report.metrics.avg_latency_s)}}s</text><text class="af-stat-label">平均响应</text></view>
+    </view>
+    <view class="af-card">
+      <view class="af-card-title">类型分解</view>
+      <view wx:for="{{report.typeBreakList}}" wx:key="type" class="row">
+        <text>{{item.type}}</text>
+        <text>{{item.correct}}/{{item.total}} ({{util.pct(item.accuracy)}}%)</text>
+      </view>
+    </view>
+    <view class="af-card">
+      <view class="af-card-title">明细</view>
+      <picker range="{{['全部','仅错误','仅正确']}}" value="{{filterIndex}}" bindchange="onPickFilter">
+        <view class="pick">{{['全部','仅错误','仅正确'][filterIndex]}}</view>
+      </picker>
+      <view wx:for="{{filteredDetails}}" wx:key="id" class="di {{item.type_correct?'':'wrong'}}">
+        <text>{{item.id}} {{item.label}} → {{item.pred_type}} {{item.type_correct?'✅':'❌'}} {{item.latency}}s</text>
+      </view>
+    </view>
+  </block>
+  <view wx:else class="empty">暂无报告，请点击运行评估</view>
+</view>
+
+<wxs module="util">
+function pct(x) { return Math.round((+x || 0) * 100); }
+function fix1(x) { return ((+x || 0).toFixed ? (+x).toFixed(1) : x); }
+module.exports = { pct: pct, fix1: fix1 };
+</wxs>

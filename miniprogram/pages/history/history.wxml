@@ -1,0 +1,17 @@
+<view class="af-page">
+  <view class="af-page-header-title">检测历史</view>
+  <view class="af-page-header-sub">账号 {{ownerUsername}} 的检测记录</view>
+  <view wx:if="{{!list.length}}" class="empty">暂无记录，请先进行检测</view>
+  <view wx:for="{{list}}" wx:key="index" class="af-card row" bindtap="open" data-i="{{index}}">
+    <text class="af-badge af-badge-{{item.risk_level}}">{{labels[item.risk_level]}}</text>
+    <view class="mid">
+      <text class="t">{{item.text}}</text>
+      <text class="s">{{item.fraud_type}} · {{item.timestamp}}</text>
+    </view>
+    <text class="p">{{util.pct(item.confidence)}}%</text>
+  </view>
+</view>
+<wxs module="util">
+function pct(c) { return Math.round((+c||0)*100); }
+module.exports.pct = pct;
+</wxs>
