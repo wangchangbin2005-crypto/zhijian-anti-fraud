@@ -2,6 +2,12 @@
 
 A team-built anti-fraud prototype connecting multimodal input, risk assessment, explanations, suggested actions, and guardian intervention. The repository includes a Python backend, a Vue web interface, and a WeChat mini-program.
 
+## My contribution — Changbin Wang
+
+My implementation work focused on the web user interface and administration interface. I organized risk levels, evidence, and recommended actions into detection reports; implemented follow-up questions carrying detection context and guardian-alert configuration; and developed administration flows for knowledge maintenance, evaluation, and feedback handling. The backend and mini-program are included as part of the team project.
+
+For a quick code walkthrough, see [detection](web/src/views/DetectView.vue), [follow-up questions](web/src/views/FollowupView.vue), [guardian configuration](web/src/views/GuardianView.vue), and [feedback administration](web/src/views/AdminFeedbackView.vue).
+
 ## Workflow
 
 ```text
@@ -53,7 +59,7 @@ API documentation is available at `http://127.0.0.1:8888/docs`. Keep the working
 
 ### Web interface
 
-Use Node.js satisfying `web/package.json` (Node 22.12+ is one supported option):
+From the repository root, in a separate terminal, use Node.js satisfying `web/package.json` (Node 22.12+ is one supported option):
 
 ```sh
 cd web
@@ -65,7 +71,7 @@ npm run dev -- --host 127.0.0.1
 
 ### WeChat mini-program
 
-Import `miniprogram/` into WeChat Developer Tools. The published configuration uses `touristappid`; configure your own AppID and backend URL for a real device. A phone cannot reach the computer backend via its own `127.0.0.1`. Subscription messages also require your own WeChat configuration. Legacy standalone HTML is preserved for reference; the primary web app is `web/`.
+Import `miniprogram/` into WeChat Developer Tools. The published configuration uses `touristappid`; configure your own AppID and the backend URL in `miniprogram/utils/request.js` for a real device. A phone cannot reach the computer backend via its own `127.0.0.1`. The subscription implementation in `backend/module_subscribe.py` is not mounted by the current `app.py`; it needs application integration and your own WeChat configuration before use. Legacy standalone HTML is preserved for reference; the primary web app is `web/`.
 
 ## Demonstration scope
 
@@ -73,7 +79,7 @@ This is a prototype repository, not an operational fraud-prevention service. Som
 
 The current local/demo authentication needs hardening before any public deployment. Real user data, detection reports, local databases, caches, credentials, and model weights are excluded. This release makes no claim of real-world loss reduction or independently verified model accuracy.
 
-The code is a team project; publication under one account does not imply sole authorship. No open-source license has been added.
+The mini-program retains components from a Tencent CloudBase starter template; see [template provenance](miniprogram/docs/TEMPLATE_README.md). No open-source license has been added to the overall project.
 
 ## 中文说明
 

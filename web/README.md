@@ -1,42 +1,28 @@
-# fanzha
+# Zhijian Web / 智鉴 Web 用户端与管理端
 
-This template should help get you started developing with Vue 3 in Vite.
+Vue + TypeScript + Vite interfaces for detection, follow-up questions, guardian configuration, knowledge maintenance, evaluation, and feedback administration. See the [project overview](../README.md) for architecture and contributions.
 
-## Recommended IDE Setup
+## Run locally
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Recommended Browser Setup
-
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
+From this directory, using Node.js compatible with `package.json`:
 
 ```sh
-npm install
+npm ci
+npm run dev -- --host 127.0.0.1
 ```
 
-### Compile and Hot-Reload for Development
+Start the backend separately on port 8888. `VITE_API_BASE` can override the default `http://127.0.0.1:8888`; see `.env.example`.
 
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
+## Validate
 
 ```sh
 npm run build
 ```
+
+This runs TypeScript validation and a production build. Generated `dist/` files are not tracked.
+
+Some administration views have demonstration data or local fallback behavior. Browser-side model calls are optional; real service keys must not be embedded in a publicly deployed frontend. Scripts under `scripts/` are legacy content-generation helpers and are not required for the current build.
+
+## 中文说明
+
+网页端包含用户检测与处置流程，以及管理端知识维护、效果评估和反馈处理。按上述命令启动，配合独立运行的后端使用；部分页面保留演示数据或本地回退逻辑。

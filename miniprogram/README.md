@@ -1,51 +1,21 @@
-<br />
-<div align="center">
-    <img src="https://qcloudimg.tencent-cloud.cn/raw/f97dc74fbf9af5d7b2b3d8bc0a4e91d4.png" alt="Logo" width="400">
+# Zhijian WeChat Mini-Program / 智鉴小程序
 
-<h1 align="center">云开发企业官网模板</h1>
+The mini-program includes login, detection, follow-up questions, history, profile, guardian configuration, learning, and guidance pages. See the [project overview](../README.md).
 
-<p align="center">
-  一键创建企业官网
-    <br />
-  </p>
-</div>
+## Setup
 
-## 说明
+1. Import this directory into WeChat Developer Tools.
+2. Run `npm install` here, then use **Tools → Build npm** in Developer Tools.
+3. Configure your own AppID in `project.config.json` when required. The public source uses `touristappid`.
+4. Set the backend address in `utils/request.js`. The default is `http://127.0.0.1:8888`; a physical device needs a reachable backend and the appropriate WeChat domain configuration.
+5. Start the FastAPI backend as described in the root README.
 
-本项目为云开发企业官网模板的小程序，提供首页、解决方案、最新动态、联系我们、详情页等页面。
+Live model and notification functions require separate configuration. Some local/template services retain mock behavior; this is a development prototype.
 
-本项目默认使用体验数据运行，同时也能够使用真实数据。配置好云开发后端后，即可一键切换至真实数据。
+## Template provenance
 
-注：体验数据通过本地 Mock 数据实现。
+The client was adapted using a Tencent CloudBase enterprise-website starter template. The original README is preserved at [docs/TEMPLATE_README.md](docs/TEMPLATE_README.md), and inherited components remain in the source. That document describes the starter template, not the current anti-fraud application.
 
-本项目的后端可前往[https://tcb.cloud.tencent.com/cloud-template/detail?appName=cloudbase_official_website&from=wxide_tcb_official_website](https://tcb.cloud.tencent.com/cloud-template/detail?appName=cloudbase_official_website&from=wxide_tcb_official_website)安装。
+## 中文说明
 
-## 社区
-
-欢迎添加企微群沟通交流：
-
-<div>
-    <img src="https://qcloudimg.tencent-cloud.cn/raw/bbb904f6fd6da01aa677e8a31e37651d.jpg" style="width:30%;">
-</div>
-
-## 安装依赖
-
-1. 安装 npm 依赖
-
-```shell
-npm install
-```
-
-如果安装失败，请检查是否有足够权限执行命令，或尝试用更高权限安装依赖：
-
-```shell
-sudo npm install
-```
-
-2. 构建 npm
-   点击微信开发者工具菜单栏中的「工具」->「构建 npm」
-
-## 运行小程序
-
-在微信开发者工具中导入本项目即可运行，若想配合后端运行完整应用，请前往[https://tcb.cloud.tencent.com/cloud-template/detail?appName=cloudbase_official_website&from=wxide_tcb_official_website](https://tcb.cloud.tencent.com/cloud-template/detail?appName=cloudbase_official_website&from=wxide_tcb_official_website)安装。
-
+这是智鉴项目的微信小程序端，包含检测、追问、历史记录与监护人配置等页面。请先构建 npm 依赖，再配置 AppID 和后端地址。原始云开发模板说明已保留，当前功能与运行方法以本文件及根目录 README 为准。
